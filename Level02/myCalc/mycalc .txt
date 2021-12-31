@@ -1,0 +1,122 @@
+#!/bin/bash
+
+# FileName:mycalc.sh
+# Author:Simon Ao
+# Student ID: 040983402
+# Semester: Winter 2021
+# Course: CST8102 332
+# Lab9
+# Date: 3 April 2021
+# Create a script file to perform basic calcultions
+
+
+#Addition function
+add()
+{    
+	((result=$1+$2))
+	echo " The sum of $1 plus $2 equals $result"
+
+}
+
+#substract function
+substract()
+{
+        ((result=$1-$2))
+        echo "The sum of $1 substract $2 equals $result"
+}
+
+#display menu1
+menu1()
+{       
+        echo "C) Calculation" 
+        echo "X) Exit"
+}
+
+#display menu2
+menu2()
+{
+        echo "Please enter an integer number or X to exit:"
+}
+
+#display menu3
+menu3()
+{  
+	clear
+        echo "+) Add"
+        echo "-) Substract"
+        echo "X) Exit"
+	
+}
+
+#display function calcultion 
+calcultion()
+{
+        if [ $2 = '+' ]
+        then
+                add $1 $3
+        elif [ $2 = '-' ]
+        then
+                substract $1 $3
+        fi
+}
+
+#Beginning of if Statement
+if [ $# != 3 ]
+then
+        option='C'
+	clear
+        while [ $option != 'x' ] && [ $option != 'X' ]
+        do     
+		clear
+                menu1
+                read option
+	
+                if [ $option = 'c' ] || [ $option = 'C' ]
+			
+                then 
+    		       clear			
+		      	menu2				
+                        read option
+			
+                        if [ $option != 'x' ] && [ $option != 'X' ]
+                        then
+			
+                                number1=$option
+				
+                                menu3
+                                read option
+                                if [ $option != 'x' ] && [ $option != 'X' ]
+                                then
+                                        operator=$option
+                                        menu2
+                                        read option
+                                        if [ $option != 'x' ] && [ $option != 'X' ]
+                                        then
+                                                number2=$option
+                                                calcultion $number1 $operator $number2         
+                                        fi
+                                fi
+                        fi
+                fi
+        done
+else
+        calcultion $1 $2 $3
+fi
+
+clear
+
+
+
+
+#eof:mycalc.sh
+
+
+
+
+
+
+
+
+
+
+
